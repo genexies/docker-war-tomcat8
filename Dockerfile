@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -yq curl
 ADD pkgp-run.sh /pkgp-run.sh
 RUN chmod u+x /pkgp-run.sh
 
+EXPOSE 8080
 
 # ################################################################################ Entry point
 # From tutum/tomcat:7.0
