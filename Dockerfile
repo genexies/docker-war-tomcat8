@@ -1,4 +1,4 @@
-FROM peerade/tomcat7
+FROM peerade/tomcat7:1
 MAINTAINER Javier Jerónimo <jjeronimo@packagepeer.com>
 
 # HowTo build: sudo docker build --tag=peerade/api:4 .
