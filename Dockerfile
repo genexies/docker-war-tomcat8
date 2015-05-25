@@ -1,15 +1,30 @@
-FROM packagepeer/api:3
-MAINTAINER Javier Jerónimo <jcjeronimo@genexies.net>
+FROM peerade/tomcat7
+MAINTAINER Javier Jerónimo <jjeronimo@packagepeer.com>
 
-# HowTo build: sudo docker build --tag=peerade/api:3 .
+# HowTo build: sudo docker build --tag=peerade/api:4 .
 
-# HowTo run: sudo docker run -e ARTIFACT_URL=... -e DESIRED_WEBAPP_PATH_IN_TOMCAT=... -e DRIPSTAT_SETUP=yes -e DRIPSTAT_APP_NAME=... -e DRIPSTAT_LICENCE=... -e CATALINA_OPTS=... peerade/api:2
+# HowTo run: sudo docker run -e ARTIFACT_URL=... -e DESIRED_WEBAPP_PATH_IN_TOMCAT=... -e DRIPSTAT_SETUP=yes -e DRIPSTAT_APP_NAME=... -e DRIPSTAT_LICENCE=... -e CATALINA_OPTS=... peerade/api:4
 
 # ################################################################################ Setup
-ADD etc/tomcat7/web.xml /tomcat/conf/web.xml
+RUN apt-get update && apt-get install -yq curl
 
+RUN apt-get install -yq unzip && \
+    mkdir -p /opt/dripstat_agent-6.1.18 && \
+    wget http://dripstat.com/dl/dripstat_agent-6.1.18.zip && \
+    unzip dripstat_agent-6.1.18.zip -d ${CATALINA_HOME}
+
+ADD etc/tomcat7/web.xml ${CATALINA_HOME}/conf/web.xml
 ENV CATALINA_OPTS="${CATALINA_OPTS}"
 
 # ################################################################################ Entry point
-# From packagepeer/api
+CMD ["/pkgp-run.sh"]
+
+
+ADD pkgp-run.sh /pkgp-run.sh
+RUN chmod u+x /pkgp-run.sh
+
+EXPOSE 8080
+
+# ################################################################################ Entry point
+# From tutum/tomcat:7.0
 CMD ["/pkgp-run.sh"]
