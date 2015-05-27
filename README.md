@@ -1,6 +1,6 @@
 # docker-api
 
-FROM: peerade/tomcat7:2 (https://github.com/peerade/docker-tomcat7/tree/v2)
+FROM: packagepeer/tomcat7:2 (https://github.com/packagepeer/docker-tomcat7/tree/v2)
  - Tomcat 7.0.62
  - APR 1.5.2
 
