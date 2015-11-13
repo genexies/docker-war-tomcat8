@@ -43,5 +43,6 @@ Environment that can be injected when running the container:
             -e DRIPSTAT_LICENCE=1234567890 \
             -e CATALINA_OPTS="-Dnewrelic.environment=development  -Djava.awt.headless=true -Xmx1280m -Xms1280m -XX:+UseConcMarkSweepGC" \
             -p 8080:8080 \
-            -d genexies/docker-api:4
+            --name=war-tomcat8
+            -d genexies/war-tomcat8:latest
  ```
