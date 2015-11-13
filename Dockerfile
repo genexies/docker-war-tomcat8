@@ -15,6 +15,6 @@ ENV CATALINA_OPTS="${CATALINA_OPTS}"
 # ################################################################################ Entry point
 EXPOSE 8080
 
-ADD pkgp-run.sh /entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh
 CMD ["/entrypoint.sh"]
