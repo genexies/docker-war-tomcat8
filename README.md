@@ -1,23 +1,22 @@
-# docker-api
+# genexies/docker-war-tomcat
 
-FROM: packagepeer/tomcat7:2 (https://github.com/packagepeer/docker-tomcat7/tree/v2)
- - Tomcat 7.0.62
+FROM: genexies/tomcat7:latest (https://github.com/genexies/docker-tomcat8)
+ - Tomcat 8
  - APR 1.5.2
 
 Installs:
- - curl
- - dripstat JVM agent (optional)
- - NewRelic JVM agent (optional)
+ - cURL
+ - DripStat JVM agent (optional)
+ - New Relic JVM agent (optional)
 
 Allows customizing Tomcat's:
- - web.xml
  - CATALINA_OPTS
 
 Deploys an arbitrary WAR in Tomcat:
- - Download URL for artifact (curl)
- - Path to publish WAR in Tomcat
+ - Download URL for artifact (cURL).
+ - Path to publish WAR in Tomcat.
 
-Allows activating DripStat agent inside Tomcat
+Allows activating DripStat agent inside Tomcat.
 
 # Configuration
 
@@ -29,10 +28,10 @@ Environment that can be injected when running the container:
  - DRIPSTAT_SETUP: if "yes", then activate DripStat JVM agent in Tomcat before starting catalina
    - DRIPSTAT_APP_NAME: App name configured in DripStat service
    - DRIPSTAT_LICENCE: License
- - NEWRELIC_SETUP: if "yes", then activate NewRelic JVM agent in Tomcat before starting catalina
-   - NEWRELIC_DOWNLOAD_URL: URL to download NewRelic agent ZIP from.
+ - NEWRELIC_SETUP: if "yes", then activate New Relic JVM agent in Tomcat before starting catalina
+   - NEWRELIC_DOWNLOAD_URL: URL to download New Relic agent ZIP from.
    - NEWRELIC_LICENSE: License ID
-   - NEWRELIC_APP_NAME: App name to be used in NewRelic agent
+   - NEWRELIC_APP_NAME: App name to be used in New Relic agent
  - CATALINA_OPTS: additional options for Tomcat
 
  Example:
@@ -44,5 +43,5 @@ Environment that can be injected when running the container:
             -e DRIPSTAT_LICENCE=1234567890 \
             -e CATALINA_OPTS="-Dnewrelic.environment=development  -Djava.awt.headless=true -Xmx1280m -Xms1280m -XX:+UseConcMarkSweepGC" \
             -p 8080:8080 \
-            -d peerade/docker-api:4
+            -d genexies/docker-api:4
  ```
